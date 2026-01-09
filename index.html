@@ -13,7 +13,7 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  overflow-x:hidden;
+  overflow:hidden;
   color:white;
 }
 
@@ -25,7 +25,6 @@ body{
   background:white;
   border-radius:50%;
   animation:piscar 3s infinite alternate;
-  z-index:0;
 }
 @keyframes piscar{
   from{opacity:.3}
@@ -37,7 +36,6 @@ body{
   position:fixed;
   font-size:18px;
   animation:cair linear infinite;
-  z-index:1;
 }
 @keyframes cair{
   from{transform:translateY(-10vh);opacity:1}
@@ -51,30 +49,28 @@ body{
   padding:25px;
   border-radius:22px;
   text-align:center;
-  box-shadow:0 20px 40px rgba(0,0,0,.6);
-  z-index:2;
   color:#333;
+  z-index:2;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
 }
 
-h1{color:#e91e63;margin-bottom:0}
+h1{color:#e91e63;margin:0}
 .sub{font-size:13px;color:#777}
 
 .mensagem{
-  margin-top:15px;
+  margin:15px 0;
   font-size:15px;
   line-height:1.5;
   white-space:pre-line;
 }
 
 .assinatura{
-  margin-top:10px;
   font-weight:bold;
   color:#e91e63;
 }
 
 /* GALERIA */
 .galeria{
-  margin-top:20px;
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:10px;
@@ -85,7 +81,9 @@ h1{color:#e91e63;margin-bottom:0}
   cursor:pointer;
   transition:.3s;
 }
-.galeria img:hover{transform:scale(1.05)}
+.galeria img:hover{
+  transform:scale(1.05);
+}
 
 /* MODAL */
 .modal{
@@ -96,54 +94,42 @@ h1{color:#e91e63;margin-bottom:0}
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  z-index:999;
+  z-index:10;
 }
-
-.modal h2{
-  color:#ffe81f;
-  font-weight:normal;
-  margin-bottom:10px;
-}
-
 .modal img{
   max-width:90%;
   max-height:75%;
   border-radius:12px;
 }
-
-.fechar,.seta{
+.modal h2{
+  color:#ffe81f;
+  margin-bottom:10px;
+}
+.fechar{
   position:absolute;
+  top:20px;
+  right:25px;
   color:white;
   font-size:30px;
   cursor:pointer;
-}
-.fechar{top:20px;right:25px}
-.seta.esq{left:15px}
-.seta.dir{right:15px}
-
-.contador{
-  margin-top:10px;
-  color:white;
-  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 STAR WARS – CLÍMAX -->
+<!-- 🎵 MÚSICA (TOCA AO ABRIR FOTO) -->
 <audio id="musica" preload="auto" loop>
-  <source src="https://archive.org/download/StarWarsThemeSong/Star%20Wars%20Theme%20Song.mp3" type="audio/mpeg">
+  <source src="until.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 /* ESTRELAS */
-for(let i=0;i<130;i++){
+for(let i=0;i<120;i++){
   const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"vw";
   s.style.top=Math.random()*100+"vh";
-  s.style.animationDuration=(2+Math.random()*3)+"s";
   document.body.appendChild(s);
 }
 
@@ -158,7 +144,6 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),7000);
 },400);
 
-/* GALERIA */
 const fotos=[
  "foto1.jpg.jpeg",
  "foto2.jpg.jpeg",
@@ -168,14 +153,13 @@ const fotos=[
  "foto6.jpg.jpeg"
 ];
 
-let atual=0;
 let tocou=false;
 
 function tocarMusica(){
   if(!tocou){
     const audio=document.getElementById("musica");
-    audio.currentTime=38; // ⭐ CLÍMAX DA MÚSICA
-    audio.volume=0.85;
+    audio.currentTime=12;   // ponto bonito da música
+    audio.volume=0.6;
     audio.play();
     tocou=true;
   }
@@ -183,24 +167,12 @@ function tocarMusica(){
 
 function abrir(i){
   tocarMusica();
-  atual=i;
   document.getElementById("imgModal").src=fotos[i];
-  document.getElementById("contador").innerText=(i+1)+" / "+fotos.length;
   document.getElementById("modal").style.display="flex";
 }
 
 function fechar(){
   document.getElementById("modal").style.display="none";
-}
-
-function prox(){
-  atual=(atual+1)%fotos.length;
-  abrir(atual);
-}
-
-function ant(){
-  atual=(atual-1+fotos.length)%fotos.length;
-  abrir(atual);
 }
 </script>
 
@@ -231,11 +203,8 @@ Eu te amo hoje, amanhã e sempre. ❤️
 
 <div class="modal" id="modal">
   <span class="fechar" onclick="fechar()">✕</span>
-  <span class="seta esq" onclick="ant()">❮</span>
   <h2>Luiza, minha galáxia ⭐</h2>
   <img id="imgModal">
-  <span class="seta dir" onclick="prox()">❯</span>
-  <div class="contador" id="contador"></div>
 </div>
 
 </body>
