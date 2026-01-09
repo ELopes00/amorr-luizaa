@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Luiza ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #ff5f9e, #ffc1cc);
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .card {
+      background: #fff;
+      width: 360px;
+      padding: 25px;
+      border-radius: 22px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      z-index: 2;
+      animation: aparecer 1s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    h1 {
+      color: #e91e63;
+      margin-bottom: 5px;
+    }
+
+    p {
+      color: #555;
+      font-size: 14px;
+    }
+
+    .mensagem {
+      margin-top: 15px;
+      font-size: 15px;
+      color: #444;
+      white-space: pre-line;
+    }
+
+    .assinatura {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #e91e63;
+    }
+
+    /* GALERIA */
+    .galeria {
+      margin-top: 20px;
+    }
+
+    .galeria img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    /* CORAÇÕES */
+    .heart {
+      position: fixed;
+      color: #ff3366;
+      font-size: 20px;
+      animation: cair linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes cair {
+      from { transform: translateY(-10vh); opacity: 1; }
+      to { transform: translateY(110vh); opacity: 0; }
+    }
+
+    .qr {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- CORAÇÕES CAINDO -->
+<script>
+  function criarCoracao() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }
+  setInterval(criarCoracao, 300);
+</script>
+
+<div class="card">
+  <h1>❤️ Luiza ❤️</h1>
+  <p>Essa página é só pra você</p>
+
+  <div class="mensagem">
+Luiza, você é alguém muito especial para mim.
+Eu te amo mais do que consigo explicar em palavras.
+Quero que saiba que o meu amor por você é verdadeiro,
+forte e eterno.
+Hoje, amanhã e sempre, eu vou te amar. ❤️
+  </div>
+
+  <div class="assinatura">— Ezequiel</div>
+
+  <!-- GALERIA DE FOTOS -->
+  <div class="galeria">
+    <h3>📸 Nossos Momentos</h3>
+
+    <img src="fotos/foto1.jpg" alt="Foto 1">
+    <img src="fotos/foto2.jpg" alt="Foto 2">
+    <img src="fotos/foto3.jpg" alt="Foto 3">
+    <img src="fotos/foto4.jpg" alt="Foto 4">
+    <img src="fotos/foto5.jpg" alt="Foto 5">
+    <img src="fotos/foto6.jpg" alt="Foto 6">
+  </div>
+
+  <!-- QR CODE -->
+  <div class="qr">
+    <p>Escaneia ❤️</p>
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amor-luiza/">
+  </div>
+</div>
+
+<!-- MÚSICA -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
