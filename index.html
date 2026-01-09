@@ -2,40 +2,65 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Para Luiza ❤️</title>
+<title>Luiza, minha galáxia ⭐</title>
 
 <style>
 body {
   margin: 0;
   min-height: 100vh;
   font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #ff5f9e, #ffc1cc);
+  background: radial-gradient(circle at top, #1b0033, #000);
   display: flex;
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  color: white;
+}
+
+/* ESTRELAS */
+.star {
+  position: fixed;
+  background: white;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  animation: brilho 3s infinite alternate;
+  z-index: 0;
+}
+
+@keyframes brilho {
+  from { opacity: 0.3; }
+  to { opacity: 1; }
 }
 
 .card {
-  background: #fff;
+  background: rgba(255,255,255,0.95);
   width: 360px;
   max-width: 92%;
   padding: 25px;
   border-radius: 22px;
   text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
   z-index: 2;
+  color: #333;
 }
 
-h1 { color: #e91e63; margin-bottom: 5px; }
-p { color: #555; font-size: 14px; }
+h1 {
+  color: #e91e63;
+  margin-bottom: 0;
+}
 
+.sub {
+  font-size: 13px;
+  color: #777;
+}
+
+/* TEXTO */
 .mensagem {
   margin-top: 15px;
   font-size: 15px;
-  color: #444;
-  white-space: pre-line;
   line-height: 1.5;
+  white-space: pre-line;
 }
 
 .assinatura {
@@ -67,25 +92,32 @@ p { color: #555; font-size: 14px; }
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.95);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 999;
+  flex-direction: column;
+}
+
+.modal h2 {
+  color: #ffe81f;
+  font-weight: normal;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .modal img {
   max-width: 90%;
-  max-height: 80%;
+  max-height: 75%;
   border-radius: 12px;
 }
 
 .fechar, .seta {
   position: absolute;
-  color: white;
+  color: #fff;
   font-size: 30px;
   cursor: pointer;
-  user-select: none;
 }
 
 .fechar { top: 20px; right: 25px; }
@@ -93,8 +125,7 @@ p { color: #555; font-size: 14px; }
 .seta.dir { right: 15px; }
 
 .contador {
-  position: absolute;
-  bottom: 20px;
+  margin-top: 10px;
   color: #fff;
   font-size: 14px;
 }
@@ -102,7 +133,7 @@ p { color: #555; font-size: 14px; }
 /* CORAÇÕES */
 .heart {
   position: fixed;
-  font-size: 20px;
+  font-size: 18px;
   animation: cair linear infinite;
   z-index: 1;
 }
@@ -111,61 +142,31 @@ p { color: #555; font-size: 14px; }
   from { transform: translateY(-10vh); opacity: 1; }
   to { transform: translateY(110vh); opacity: 0; }
 }
-
-.qr { margin-top: 20px; }
 </style>
 </head>
 
 <body>
 
-<!-- ⭐ MÚSICA STAR WARS (THEME) -->
-<iframe
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/sGbxmsDFVnE?autoplay=1&loop=1&playlist=sGbxmsDFVnE"
+<!-- PLAYER STAR WARS -->
+<iframe id="player"
+  width="0" height="0"
+  src="https://www.youtube.com/embed/sGbxmsDFVnE?enablejsapi=1&loop=1&playlist=sGbxmsDFVnE"
   frameborder="0"
   allow="autoplay">
 </iframe>
 
 <script>
-const fotos = [
- "foto1.jpg.jpeg",
- "foto2.jpg.jpeg",
- "foto3.jpg.jpeg",
- "foto4.jpg.jpeg",
- "foto5.jpg.jpeg",
- "foto6.jpg.jpeg"
-];
-let atual = 0;
-
-function abrir(i){
-  atual = i;
-  document.getElementById("imgModal").src = fotos[i];
-  atualizar();
-  document.getElementById("modal").style.display = "flex";
+/* ESTRELAS */
+for(let i=0;i<120;i++){
+  const s=document.createElement("div");
+  s.className="star";
+  s.style.left=Math.random()*100+"vw";
+  s.style.top=Math.random()*100+"vh";
+  s.style.animationDuration=(2+Math.random()*3)+"s";
+  document.body.appendChild(s);
 }
 
-function fechar(){
-  document.getElementById("modal").style.display = "none";
-}
-
-function prox(){
-  atual = (atual + 1) % fotos.length;
-  atualizar();
-}
-
-function ant(){
-  atual = (atual - 1 + fotos.length) % fotos.length;
-  atualizar();
-}
-
-function atualizar(){
-  document.getElementById("imgModal").src = fotos[atual];
-  document.getElementById("contador").innerText =
-    (atual+1) + " / " + fotos.length;
-}
-
-// CORAÇÕES CAINDO
+/* CORAÇÕES */
 setInterval(()=>{
   const h=document.createElement("div");
   h.className="heart";
@@ -174,18 +175,58 @@ setInterval(()=>{
   h.style.animationDuration=(3+Math.random()*4)+"s";
   document.body.appendChild(h);
   setTimeout(()=>h.remove(),7000);
-},300);
+},400);
+
+const fotos=[
+ "foto1.jpg.jpeg",
+ "foto2.jpg.jpeg",
+ "foto3.jpg.jpeg",
+ "foto4.jpg.jpeg",
+ "foto5.jpg.jpeg",
+ "foto6.jpg.jpeg"
+];
+let atual=0;
+let musica=false;
+
+function tocar(){
+  if(!musica){
+    const p=document.getElementById("player");
+    p.src += "&autoplay=1";
+    musica=true;
+  }
+}
+
+function abrir(i){
+  tocar();
+  atual=i;
+  document.getElementById("imgModal").src=fotos[i];
+  document.getElementById("contador").innerText=(i+1)+" / "+fotos.length;
+  document.getElementById("modal").style.display="flex";
+}
+
+function fechar(){
+  document.getElementById("modal").style.display="none";
+}
+
+function prox(){
+  atual=(atual+1)%fotos.length;
+  abrir(atual);
+}
+
+function ant(){
+  atual=(atual-1+fotos.length)%fotos.length;
+  abrir(atual);
+}
 </script>
 
 <div class="card">
 <h1>❤️ Luiza ❤️</h1>
-<p>Essa página é só pra você</p>
+<div class="sub">Você é minha galáxia ⭐</div>
 
 <div class="mensagem">
 Luiza, você é alguém muito especial para mim.
-Eu te amo mais do que consigo explicar em palavras.
-Quero que saiba que o meu amor por você é verdadeiro,
-forte e eterno.
+Meu amor por você atravessa o tempo,
+o espaço e todas as galáxias.
 Hoje, amanhã e sempre, eu vou te amar. ❤️
 </div>
 
@@ -201,17 +242,13 @@ Hoje, amanhã e sempre, eu vou te amar. ❤️
   <img src="foto5.jpg.jpeg" onclick="abrir(4)">
   <img src="foto6.jpg.jpeg" onclick="abrir(5)">
 </div>
-
-<div class="qr">
-<p>Escaneia ❤️</p>
-<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amorr-luizaa/">
-</div>
 </div>
 
 <!-- MODAL -->
 <div class="modal" id="modal">
   <span class="fechar" onclick="fechar()">✕</span>
   <span class="seta esq" onclick="ant()">❮</span>
+  <h2>Luiza, minha galáxia ⭐</h2>
   <img id="imgModal">
   <span class="seta dir" onclick="prox()">❯</span>
   <div class="contador" id="contador"></div>
