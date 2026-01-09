@@ -20,6 +20,7 @@
     .card {
       background: #fff;
       width: 360px;
+      max-width: 90%;
       padding: 25px;
       border-radius: 22px;
       text-align: center;
@@ -48,6 +49,7 @@
       font-size: 15px;
       color: #444;
       white-space: pre-line;
+      line-height: 1.5;
     }
 
     .assinatura {
@@ -59,13 +61,20 @@
     /* GALERIA */
     .galeria {
       margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
     }
 
     .galeria img {
       width: 100%;
-      border-radius: 15px;
-      margin-top: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05);
     }
 
     /* CORAÇÕES */
@@ -90,7 +99,6 @@
 
 <body>
 
-<!-- CORAÇÕES CAINDO -->
 <script>
   function criarCoracao() {
     const heart = document.createElement("div");
@@ -118,29 +126,23 @@ Hoje, amanhã e sempre, eu vou te amar. ❤️
 
   <div class="assinatura">— Ezequiel</div>
 
-  <!-- GALERIA DE FOTOS -->
-  <div class="galeria">
-    <h3>📸 Nossos Momentos</h3>
+  <h3>📸 Nossos Momentos</h3>
 
-    <img src="fotos/foto1.jpg" alt="Foto 1">
-    <img src="fotos/foto2.jpg" alt="Foto 2">
-    <img src="fotos/foto3.jpg" alt="Foto 3">
-    <img src="fotos/foto4.jpg" alt="Foto 4">
-    <img src="fotos/foto5.jpg" alt="Foto 5">
-    <img src="fotos/foto6.jpg" alt="Foto 6">
+  <!-- GALERIA COM NOMES REAIS -->
+  <div class="galeria">
+    <img src="foto1.jpg.jpeg" alt="Foto 1">
+    <img src="foto2.jpg.jpeg" alt="Foto 2">
+    <img src="foto3.jpg.jpeg" alt="Foto 3">
+    <img src="foto4.jpg.jpeg" alt="Foto 4">
+    <img src="foto5.jpg.jpeg" alt="Foto 5">
+    <img src="foto6.jpg.jpeg" alt="Foto 6">
   </div>
 
-  <!-- QR CODE -->
   <div class="qr">
     <p>Escaneia ❤️</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amor-luiza/">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amorr-luizaa/">
   </div>
 </div>
-
-<!-- MÚSICA -->
-<audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-</audio>
 
 </body>
 </html>
