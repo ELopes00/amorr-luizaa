@@ -1,147 +1,211 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Para Luiza ❤️</title>
+<meta charset="UTF-8">
+<title>Para Luiza ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Segoe UI', Arial, sans-serif;
-      background: linear-gradient(135deg, #ff5f9e, #ffc1cc);
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px 0;
-    }
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: linear-gradient(135deg, #ff5f9e, #ffc1cc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
 
-    .card {
-      background: #fff;
-      width: 360px;
-      max-width: 90%;
-      padding: 25px;
-      border-radius: 22px;
-      text-align: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-      z-index: 2;
-      animation: aparecer 1s ease;
-    }
+.card {
+  background: #fff;
+  width: 360px;
+  max-width: 92%;
+  padding: 25px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  z-index: 2;
+}
 
-    @keyframes aparecer {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
+h1 { color: #e91e63; margin-bottom: 5px; }
+p { color: #555; font-size: 14px; }
 
-    h1 {
-      color: #e91e63;
-      margin-bottom: 5px;
-    }
+.mensagem {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #444;
+  white-space: pre-line;
+  line-height: 1.5;
+}
 
-    p {
-      color: #555;
-      font-size: 14px;
-    }
+.assinatura {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #e91e63;
+}
 
-    .mensagem {
-      margin-top: 15px;
-      font-size: 15px;
-      color: #444;
-      white-space: pre-line;
-      line-height: 1.5;
-    }
+/* GALERIA */
+.galeria {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
 
-    .assinatura {
-      margin-top: 10px;
-      font-weight: bold;
-      color: #e91e63;
-    }
+.galeria img {
+  width: 100%;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
 
-    /* GALERIA */
-    .galeria {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-    }
+.galeria img:hover {
+  transform: scale(1.05);
+}
 
-    .galeria img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      transition: transform 0.3s;
-    }
+/* MODAL */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
-    .galeria img:hover {
-      transform: scale(1.05);
-    }
+.modal img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 12px;
+}
 
-    /* CORAÇÕES */
-    .heart {
-      position: fixed;
-      color: #ff3366;
-      font-size: 20px;
-      animation: cair linear infinite;
-      z-index: 1;
-    }
+.fechar, .seta {
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  user-select: none;
+}
 
-    @keyframes cair {
-      from { transform: translateY(-10vh); opacity: 1; }
-      to { transform: translateY(110vh); opacity: 0; }
-    }
+.fechar { top: 20px; right: 25px; }
+.seta.esq { left: 15px; }
+.seta.dir { right: 15px; }
 
-    .qr {
-      margin-top: 20px;
-    }
-  </style>
+.contador {
+  position: absolute;
+  bottom: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* CORAÇÕES */
+.heart {
+  position: fixed;
+  font-size: 20px;
+  animation: cair linear infinite;
+  z-index: 1;
+}
+
+@keyframes cair {
+  from { transform: translateY(-10vh); opacity: 1; }
+  to { transform: translateY(110vh); opacity: 0; }
+}
+
+.qr { margin-top: 20px; }
+</style>
 </head>
 
 <body>
 
 <script>
-  function criarCoracao() {
-    const heart = document.createElement("div");
-    heart.className = "heart";
-    heart.innerHTML = "❤️";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (3 + Math.random() * 4) + "s";
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }
-  setInterval(criarCoracao, 300);
+const fotos = [
+ "foto1.jpg.jpeg",
+ "foto2.jpg.jpeg",
+ "foto3.jpg.jpeg",
+ "foto4.jpg.jpeg",
+ "foto5.jpg.jpeg",
+ "foto6.jpg.jpeg"
+];
+let atual = 0;
+
+function abrir(i){
+  atual = i;
+  document.getElementById("imgModal").src = fotos[i];
+  atualizar();
+  document.getElementById("modal").style.display = "flex";
+}
+
+function fechar(){
+  document.getElementById("modal").style.display = "none";
+}
+
+function prox(){
+  atual = (atual + 1) % fotos.length;
+  atualizar();
+}
+
+function ant(){
+  atual = (atual - 1 + fotos.length) % fotos.length;
+  atualizar();
+}
+
+function atualizar(){
+  document.getElementById("imgModal").src = fotos[atual];
+  document.getElementById("contador").innerText =
+    (atual+1) + " / " + fotos.length;
+}
+
+// CORAÇÕES
+setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+},300);
 </script>
 
 <div class="card">
-  <h1>❤️ Luiza ❤️</h1>
-  <p>Essa página é só pra você</p>
+<h1>❤️ Luiza ❤️</h1>
+<p>Essa página é só pra você</p>
 
-  <div class="mensagem">
+<div class="mensagem">
 Luiza, você é alguém muito especial para mim.
 Eu te amo mais do que consigo explicar em palavras.
 Quero que saiba que o meu amor por você é verdadeiro,
 forte e eterno.
 Hoje, amanhã e sempre, eu vou te amar. ❤️
-  </div>
+</div>
 
-  <div class="assinatura">— Ezequiel</div>
+<div class="assinatura">— Ezequiel</div>
 
-  <h3>📸 Nossos Momentos</h3>
+<h3>📸 Nossos Momentos</h3>
 
-  <!-- GALERIA COM NOMES REAIS -->
-  <div class="galeria">
-    <img src="foto1.jpg.jpeg" alt="Foto 1">
-    <img src="foto2.jpg.jpeg" alt="Foto 2">
-    <img src="foto3.jpg.jpeg" alt="Foto 3">
-    <img src="foto4.jpg.jpeg" alt="Foto 4">
-    <img src="foto5.jpg.jpeg" alt="Foto 5">
-    <img src="foto6.jpg.jpeg" alt="Foto 6">
-  </div>
+<div class="galeria">
+  <img src="foto1.jpg.jpeg" onclick="abrir(0)">
+  <img src="foto2.jpg.jpeg" onclick="abrir(1)">
+  <img src="foto3.jpg.jpeg" onclick="abrir(2)">
+  <img src="foto4.jpg.jpeg" onclick="abrir(3)">
+  <img src="foto5.jpg.jpeg" onclick="abrir(4)">
+  <img src="foto6.jpg.jpeg" onclick="abrir(5)">
+</div>
 
-  <div class="qr">
-    <p>Escaneia ❤️</p>
-    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amorr-luizaa/">
-  </div>
+<div class="qr">
+<p>Escaneia ❤️</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://elopes00.github.io/amorr-luizaa/">
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <span class="fechar" onclick="fechar()">✕</span>
+  <span class="seta esq" onclick="ant()">❮</span>
+  <img id="imgModal">
+  <span class="seta dir" onclick="prox()">❯</span>
+  <div class="contador" id="contador"></div>
 </div>
 
 </body>
