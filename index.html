@@ -5,142 +5,140 @@
 <title>Luiza, minha galáxia ⭐</title>
 
 <style>
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: radial-gradient(circle at top, #12001f, #000);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: hidden;
-  color: white;
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:radial-gradient(circle at top,#140021,#000);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow-x:hidden;
+  color:white;
 }
 
 /* ESTRELAS */
-.star {
-  position: fixed;
-  background: white;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  animation: brilho 3s infinite alternate;
-  z-index: 0;
+.star{
+  position:fixed;
+  width:2px;
+  height:2px;
+  background:white;
+  border-radius:50%;
+  animation:piscar 3s infinite alternate;
+  z-index:0;
 }
-@keyframes brilho {
-  from { opacity: 0.3; }
-  to { opacity: 1; }
+@keyframes piscar{
+  from{opacity:.3}
+  to{opacity:1}
 }
 
 /* CORAÇÕES */
-.heart {
-  position: fixed;
-  font-size: 18px;
-  animation: cair linear infinite;
-  z-index: 1;
+.heart{
+  position:fixed;
+  font-size:18px;
+  animation:cair linear infinite;
+  z-index:1;
 }
-@keyframes cair {
-  from { transform: translateY(-10vh); opacity: 1; }
-  to { transform: translateY(110vh); opacity: 0; }
-}
-
-.card {
-  background: rgba(255,255,255,0.95);
-  width: 360px;
-  max-width: 92%;
-  padding: 25px;
-  border-radius: 22px;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  z-index: 2;
-  color: #333;
+@keyframes cair{
+  from{transform:translateY(-10vh);opacity:1}
+  to{transform:translateY(110vh);opacity:0}
 }
 
-h1 { color: #e91e63; margin-bottom: 0; }
-.sub { font-size: 13px; color: #777; }
-
-.mensagem {
-  margin-top: 15px;
-  font-size: 15px;
-  line-height: 1.5;
-  white-space: pre-line;
+.card{
+  background:rgba(255,255,255,.95);
+  width:360px;
+  max-width:92%;
+  padding:25px;
+  border-radius:22px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,.6);
+  z-index:2;
+  color:#333;
 }
 
-.assinatura {
-  margin-top: 10px;
-  font-weight: bold;
-  color: #e91e63;
+h1{color:#e91e63;margin-bottom:0}
+.sub{font-size:13px;color:#777}
+
+.mensagem{
+  margin-top:15px;
+  font-size:15px;
+  line-height:1.5;
+  white-space:pre-line;
+}
+
+.assinatura{
+  margin-top:10px;
+  font-weight:bold;
+  color:#e91e63;
 }
 
 /* GALERIA */
-.galeria {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+.galeria{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
 }
-.galeria img {
-  width: 100%;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.3s;
+.galeria img{
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+  transition:.3s;
 }
-.galeria img:hover {
-  transform: scale(1.05);
-}
+.galeria img:hover{transform:scale(1.05)}
 
 /* MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  flex-direction: column;
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
 }
 
-.modal h2 {
-  color: #ffe81f;
-  font-weight: normal;
-  margin-bottom: 10px;
+.modal h2{
+  color:#ffe81f;
+  font-weight:normal;
+  margin-bottom:10px;
 }
 
-.modal img {
-  max-width: 90%;
-  max-height: 75%;
-  border-radius: 12px;
+.modal img{
+  max-width:90%;
+  max-height:75%;
+  border-radius:12px;
 }
 
-.fechar, .seta {
-  position: absolute;
-  color: #fff;
-  font-size: 30px;
-  cursor: pointer;
+.fechar,.seta{
+  position:absolute;
+  color:white;
+  font-size:30px;
+  cursor:pointer;
 }
-.fechar { top: 20px; right: 25px; }
-.seta.esq { left: 15px; }
-.seta.dir { right: 15px; }
+.fechar{top:20px;right:25px}
+.seta.esq{left:15px}
+.seta.dir{right:15px}
 
-.contador {
-  margin-top: 10px;
-  color: #fff;
-  font-size: 14px;
+.contador{
+  margin-top:10px;
+  color:white;
+  font-size:14px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 ÁUDIO STAR WARS (HTML5 – FUNCIONA) -->
-<audio id="musica" loop>
+<!-- 🎵 STAR WARS – CLÍMAX -->
+<audio id="musica" preload="auto" loop>
   <source src="https://archive.org/download/StarWarsThemeSong/Star%20Wars%20Theme%20Song.mp3" type="audio/mpeg">
 </audio>
 
 <script>
 /* ESTRELAS */
-for(let i=0;i<120;i++){
+for(let i=0;i<130;i++){
   const s=document.createElement("div");
   s.className="star";
   s.style.left=Math.random()*100+"vw";
@@ -160,7 +158,8 @@ setInterval(()=>{
   setTimeout(()=>h.remove(),7000);
 },400);
 
-const fotos = [
+/* GALERIA */
+const fotos=[
  "foto1.jpg.jpeg",
  "foto2.jpg.jpeg",
  "foto3.jpg.jpeg",
@@ -169,62 +168,65 @@ const fotos = [
  "foto6.jpg.jpeg"
 ];
 
-let atual = 0;
-let tocando = false;
+let atual=0;
+let tocou=false;
 
 function tocarMusica(){
-  if(!tocando){
-    document.getElementById("musica").play();
-    tocando = true;
+  if(!tocou){
+    const audio=document.getElementById("musica");
+    audio.currentTime=38; // ⭐ CLÍMAX DA MÚSICA
+    audio.volume=0.85;
+    audio.play();
+    tocou=true;
   }
 }
 
 function abrir(i){
-  tocarMusica(); // 🎵 TOCA AQUI (GARANTIDO)
-  atual = i;
-  document.getElementById("imgModal").src = fotos[i];
-  document.getElementById("contador").innerText = (i+1) + " / " + fotos.length;
-  document.getElementById("modal").style.display = "flex";
+  tocarMusica();
+  atual=i;
+  document.getElementById("imgModal").src=fotos[i];
+  document.getElementById("contador").innerText=(i+1)+" / "+fotos.length;
+  document.getElementById("modal").style.display="flex";
 }
 
 function fechar(){
-  document.getElementById("modal").style.display = "none";
+  document.getElementById("modal").style.display="none";
 }
 
 function prox(){
-  atual = (atual + 1) % fotos.length;
+  atual=(atual+1)%fotos.length;
   abrir(atual);
 }
 
 function ant(){
-  atual = (atual - 1 + fotos.length) % fotos.length;
+  atual=(atual-1+fotos.length)%fotos.length;
   abrir(atual);
 }
 </script>
 
 <div class="card">
-<h1>❤️ Luiza ❤️</h1>
-<div class="sub">Luiza, minha galáxia ⭐</div>
+  <h1>❤️ Luiza ❤️</h1>
+  <div class="sub">Luiza, minha galáxia ⭐</div>
 
-<div class="mensagem">
-Luiza, você é alguém muito especial para mim.
+  <div class="mensagem">
+Luiza, você é muito especial para mim.
 Meu amor por você atravessa o tempo,
 o espaço e todas as galáxias.
-Hoje, amanhã e sempre, eu vou te amar. ❤️
-</div>
+Eu te amo hoje, amanhã e sempre. ❤️
+  </div>
 
-<div class="assinatura">— Ezequiel</div>
+  <div class="assinatura">— Ezequiel</div>
 
-<h3>📸 Nossos Momentos</h3>
+  <h3>📸 Nossos Momentos</h3>
 
-<div class="galeria">
-  <img src="foto1.jpg.jpeg" onclick="abrir(0)">
-  <img src="foto2.jpg.jpeg" onclick="abrir(1)">
-  <img src="foto3.jpg.jpeg" onclick="abrir(2)">
-  <img src="foto4.jpg.jpeg" onclick="abrir(3)">
-  <img src="foto5.jpg.jpeg" onclick="abrir(4)">
-  <img src="foto6.jpg.jpeg" onclick="abrir(5)">
-</div>
+  <div class="galeria">
+    <img src="foto1.jpg.jpeg" onclick="abrir(0)">
+    <img src="foto2.jpg.jpeg" onclick="abrir(1)">
+    <img src="foto3.jpg.jpeg" onclick="abrir(2)">
+    <img src="foto4.jpg.jpeg" onclick="abrir(3)">
+    <img src="foto5.jpg.jpeg" onclick="abrir(4)">
+    <img src="foto6.jpg.jpeg" onclick="abrir(5)">
+  </div>
 </div>
 
 <div class="modal" id="modal">
